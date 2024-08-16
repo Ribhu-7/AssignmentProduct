@@ -161,7 +161,6 @@
 				18B90B1D2C6C860B00905134 /* Storyboard */,
 				18B90B1C2C6C860800905134 /* Resources */,
 				18B90B192C6C860000905134 /* Extensions */,
-				18B90B182C6C85FD00905134 /* New Group */,
 				18B90AF32C6C851B00905134 /* Info.plist */,
 			);
 			path = AssignmentProduct;
@@ -182,13 +181,6 @@
 				18B90B082C6C851B00905134 /* AssignmentProductUITestsLaunchTests.swift */,
 			);
 			path = AssignmentProductUITests;
-			sourceTree = "<group>";
-		};
-		18B90B182C6C85FD00905134 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
 			sourceTree = "<group>";
 		};
 		18B90B192C6C860000905134 /* Extensions */ = {

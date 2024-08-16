@@ -129,9 +129,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bNT-i5-28r">
-                                <rect key="frame" x="10" y="480" width="373" height="100"/>
+                                <rect key="frame" x="10" y="480" width="373" height="200"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="hm1-Ve-rkN"/>
+                                    <constraint firstAttribute="height" constant="200" id="hm1-Ve-rkN"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>

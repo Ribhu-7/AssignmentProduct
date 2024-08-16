@@ -12,20 +12,17 @@ class ProductViewController: UIViewController {
     @IBOutlet weak var productTable: UITableView!
     
     var prodViewModel = ProductViewModel()
-
     let manager = DatabaseManager()
-
+    
     var products: [ProdData] = []
     var favorites: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         configuration()
     }
- 
-   
     
     func configuration(){
         self.navigationItem.title = "Products"
@@ -37,10 +34,10 @@ class ProductViewController: UIViewController {
     }
     
     func loadFavorites() {
-           // Load favorite products from Core Data
-           let favoriteProducts = manager.fetchProduct()
+        // Load favorite products from Core Data
+        let favoriteProducts = manager.fetchProduct()
         favorites = favoriteProducts.map { $0.productID ?? "" }
-       }
+    }
     
     func initViewModel(){
         let req = ProdRequest(product_category_id: 1, limit: 10, page: 1)
@@ -68,6 +65,5 @@ class ProductViewController: UIViewController {
             }
         }
     }
-    
     
 }

@@ -21,17 +21,17 @@ extension ProductViewController: UITableViewDelegate, UITableViewDataSource {
         cell.cellConfiguration(product: prod , isFav: isFavorite)
         
         cell.favoriteAction = { [weak self] in
-                    guard let self = self else { return }
-//
+            guard let self = self else { return }
+            
             if isFavorite {
-                           manager.deleteProduct(prod)
-                           self.favorites.removeAll { $0 == String(prod.id) }
-                       } else {
-                           manager.addProduct(prod)
-                           self.favorites.append(String(prod.id))
-                       }
-                    self.productTable.reloadRows(at: [indexPath], with: .automatic)
-                }
+                manager.deleteProduct(prod)
+                self.favorites.removeAll { $0 == String(prod.id) }
+            } else {
+                manager.addProduct(prod)
+                self.favorites.append(String(prod.id))
+            }
+            self.productTable.reloadRows(at: [indexPath], with: .automatic)
+        }
         return cell
     }
     
@@ -45,11 +45,11 @@ extension ProductViewController: UITableViewDelegate, UITableViewDataSource {
         let data = self.prodViewModel.products[indexPath.row]
         let prodDetailsVC = sb.instantiateViewController(identifier: "prodDetailsVC"){ coder
             in
-            ProductDetailsViewController(coder: coder,prodImgString: data.product_images, prodHead: data.name, prodSubHead: data.producer, prodPrice: String(data.cost), rating: String(data.rating), prodDetails: data.description)
+            ProductDetailsViewController(coder: coder,prodImgString: data.product_images, prodHead: data.name, prodSubHead: data.producer, prodPrice: String(data.cost), rating: String(data.rating), prodDetails: data.description , isFav: self.favorites.contains(String(data.id)))
         }
         self.navigationController?.pushViewController(prodDetailsVC, animated: true)
         
     }
     
-
+    
 }

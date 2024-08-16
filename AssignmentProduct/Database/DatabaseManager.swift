@@ -41,16 +41,16 @@ class DatabaseManager{
     func deleteProduct(_ product: ProdData){
         
         let fetchRequest: NSFetchRequest<ProductEntity> = ProductEntity.fetchRequest()
-
+        
         do {
-               let results = try context.fetch(fetchRequest)
-               if let productToDelete = results.first(where: { $0.productID == String(product.id) }) {
-                   context.delete(productToDelete)
-                   saveContext()
-               }
-           } catch {
-               print("Failed to delete favorite product: \(error)")
-           }
+            let results = try context.fetch(fetchRequest)
+            if let productToDelete = results.first(where: { $0.productID == String(product.id) }) {
+                context.delete(productToDelete)
+                saveContext()
+            }
+        } catch {
+            print("Failed to delete favorite product: \(error)")
+        }
     }
     
     func saveContext(){
