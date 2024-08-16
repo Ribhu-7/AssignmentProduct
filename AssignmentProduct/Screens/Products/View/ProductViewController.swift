@@ -12,16 +12,11 @@ class ProductViewController: UIViewController {
     @IBOutlet weak var productTable: UITableView!
     
     var prodViewModel = ProductViewModel()
-    
-    //var user: ProductEntity?
-    
+
     let manager = DatabaseManager()
-//    var product: [ProductEntity] = []
-//    var favItem: [Int:Bool] = [:]
-//    var totalItems: [Int] = []
-//    var prods: ProductEntity?
-    
+
     var products: [ProdData] = []
+    var favorites: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,24 +24,23 @@ class ProductViewController: UIViewController {
         // Do any additional setup after loading the view.
         configuration()
     }
-    
-//    private func favItemSelect(){
-//        for i in 0...9 {
-//            favItem[i] = false
-//        }
-//    }
-    
+ 
    
     
     func configuration(){
         self.navigationItem.title = "Products"
         let nib = UINib(nibName: "ProductTableViewCell", bundle: nil)
         productTable.register(nib, forCellReuseIdentifier: "ProductTableViewCell")
+        loadFavorites()
         initViewModel()
         observeEvent()
     }
     
-    
+    func loadFavorites() {
+           // Load favorite products from Core Data
+           let favoriteProducts = manager.fetchProduct()
+        favorites = favoriteProducts.map { $0.productID ?? "" }
+       }
     
     func initViewModel(){
         let req = ProdRequest(product_category_id: 1, limit: 10, page: 1)

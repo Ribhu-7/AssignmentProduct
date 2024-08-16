@@ -14,38 +14,38 @@ class DatabaseManager{
     private var context: NSManagedObjectContext {
         return (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     }
+    
     func addProduct(_ prod: ProdData){
+        
         let prodEntity = ProductEntity(context: context)
-        addUpdateUser(productEntity: prodEntity, prodData: prod)
+        addUpdateProduct(productEntity: prodEntity, prodData: prod)
     }
     
-    private func addUpdateUser(productEntity: ProductEntity, prodData: ProdData){
+    private func addUpdateProduct(productEntity: ProductEntity, prodData: ProdData){
         
         productEntity.productID = String(prodData.id)
         saveContext()
     }
     
     func fetchProduct() -> [ProductEntity]{
-        var users: [ProductEntity] = []
+        let fetchRequest: NSFetchRequest<ProductEntity> = ProductEntity.fetchRequest()
         
-        do{
-            users = try context.fetch(ProductEntity.fetchRequest())
+        do {
+            return try context.fetch(fetchRequest)
         } catch {
-            print("Error")
+            print("Failed to fetch favorite products: \(error)")
+            return []
         }
-        return users
     }
     
     func deleteProduct(_ product: ProdData){
-               let fetchRequest: NSFetchRequest<ProductEntity> = ProductEntity.fetchRequest()
-           
-               
-               if let result = try? context.fetch(fetchRequest), let objectToDelete = result.first {
-                   context.delete(objectToDelete)
-                   saveContext()
-               }
-//        context.delete(prodEntity)
-//        saveContext()
+        let fetchRequest: NSFetchRequest<ProductEntity> = ProductEntity.fetchRequest()
+        
+        
+        if let result = try? context.fetch(fetchRequest), let objectToDelete = result.first {
+            context.delete(objectToDelete)
+            saveContext()
+        }
     }
     
     func saveContext(){
@@ -57,12 +57,14 @@ class DatabaseManager{
     }
     
     func isFavorite(product: ProdData) -> Bool {
-            
-            let fetchRequest: NSFetchRequest<ProductEntity> = ProductEntity.fetchRequest()
-//            fetchRequest.predicate = NSPredicate(format: "id == %@", product.id)
-        //fetchRequest.predicate = NSPredicate(format: "id == %@", product.id)
-            
-            let result = try? context.fetch(fetchRequest)
-            return result?.first != nil
+        
+        let fetchRequest: NSFetchRequest<ProductEntity> = ProductEntity.fetchRequest()
+        do {
+            let results = try context.fetch(fetchRequest)
+            return !results.isEmpty
+        } catch {
+            print("Failed to fetch favorite product: \(error)")
+            return false
         }
+    }
 }
