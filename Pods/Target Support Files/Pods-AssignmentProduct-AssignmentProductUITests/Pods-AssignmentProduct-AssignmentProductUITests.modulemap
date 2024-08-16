@@ -1,0 +1,6 @@
+module Pods_AssignmentProduct_AssignmentProductUITests {
+  umbrella header "Pods-AssignmentProduct-AssignmentProductUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
