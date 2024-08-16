@@ -13,13 +13,15 @@ class ProductViewController: UIViewController {
     
     var prodViewModel = ProductViewModel()
     
-    var user: ProductEntity?
+    //var user: ProductEntity?
     
     let manager = DatabaseManager()
-    var product: [ProductEntity] = []
-    var favItem: [Int:Bool] = [:]
-    var totalItems: [Int] = []
-    var prods: ProductEntity?
+//    var product: [ProductEntity] = []
+//    var favItem: [Int:Bool] = [:]
+//    var totalItems: [Int] = []
+//    var prods: ProductEntity?
+    
+    var products: [ProdData] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,11 +30,11 @@ class ProductViewController: UIViewController {
         configuration()
     }
     
-    private func favItemSelect(){
-        for i in 0...9 {
-            favItem[i] = false
-        }
-    }
+//    private func favItemSelect(){
+//        for i in 0...9 {
+//            favItem[i] = false
+//        }
+//    }
     
    
     

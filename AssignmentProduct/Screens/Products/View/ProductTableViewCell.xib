@@ -42,22 +42,21 @@
                                 <rect key="frame" x="0.0" y="61.333333333333321" width="230" height="25.666666666666664"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LkP-Sg-CWi">
-                                        <rect key="frame" x="0.0" y="0.0" width="52" height="25.666666666666668"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="110" height="25.666666666666668"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                         <color key="textColor" red="1" green="0.01629760165" blue="0.060681154280000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="FKZ-O4-C5t">
-                                        <rect key="frame" x="178" y="1.9999999999999982" width="52" height="22.666666666666671"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h8Q-0F-TyW">
+                                        <rect key="frame" x="120" y="0.0" width="110" height="25.666666666666668"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </imageView>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system"/>
+                                        <connections>
+                                            <action selector="favBtnTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Djb-Pr-xM0"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstItem="FKZ-O4-C5t" firstAttribute="top" secondItem="gfU-nG-xyX" secondAttribute="top" id="CXg-Y5-EcT"/>
-                                    <constraint firstAttribute="trailing" secondItem="FKZ-O4-C5t" secondAttribute="trailing" id="RUG-Wx-15J"/>
-                                    <constraint firstItem="FKZ-O4-C5t" firstAttribute="leading" secondItem="LkP-Sg-CWi" secondAttribute="trailing" constant="30" id="X4U-gC-Uoz"/>
-                                    <constraint firstAttribute="bottom" secondItem="FKZ-O4-C5t" secondAttribute="bottom" id="n7L-o2-qpY"/>
-                                </constraints>
                             </stackView>
                         </subviews>
                     </stackView>
@@ -73,7 +72,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="favImage" destination="FKZ-O4-C5t" id="gBc-nz-Jh9"/>
+                <outlet property="favBtn" destination="h8Q-0F-TyW" id="oSn-aq-cuo"/>
                 <outlet property="productHeading" destination="zmP-iv-QtV" id="uiU-ik-y81"/>
                 <outlet property="productImage" destination="LAD-Vo-obN" id="byz-61-CfB"/>
                 <outlet property="productPrice" destination="LkP-Sg-CWi" id="L7m-fn-9IL"/>

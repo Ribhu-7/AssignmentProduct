@@ -18,13 +18,14 @@ class ProductTableViewCell: UITableViewCell {
     @IBOutlet weak var productPrice: UILabel!
    
     
-    @IBOutlet weak var favImage: UIImageView!
+    @IBOutlet weak var favBtn: UIButton!
+    
+    var favoriteAction: (() -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-//        favBtn.setImage(UIImage(systemName: "heart"), for: .normal)
-//        favBtn.setImage(UIImage(systemName: "heart.fill"), for: .selected)
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -34,12 +35,17 @@ class ProductTableViewCell: UITableViewCell {
     }
     
   
+  
+    @IBAction func favBtnTapped(_ sender: Any) {
+        favoriteAction?()
+    }
     
-    func cellConfiguration(product: ProdData){
+    func cellConfiguration(product: ProdData , isFav: Bool){
         productHeading.text = product.name
         productSubhead.text = product.producer
         productPrice.text = "Rs. \(product.cost)"
         productImage.setImage(with: product.product_images)
+        favBtn.setImage(isFav ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart"), for: .normal)
     }
     
 }

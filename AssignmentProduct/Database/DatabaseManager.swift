@@ -36,10 +36,16 @@ class DatabaseManager{
         return users
     }
     
-    func deleteProduct(_ prodEntity: ProductEntity){
-
-        context.delete(prodEntity)
-        saveContext()
+    func deleteProduct(_ product: ProdData){
+               let fetchRequest: NSFetchRequest<ProductEntity> = ProductEntity.fetchRequest()
+           
+               
+               if let result = try? context.fetch(fetchRequest), let objectToDelete = result.first {
+                   context.delete(objectToDelete)
+                   saveContext()
+               }
+//        context.delete(prodEntity)
+//        saveContext()
     }
     
     func saveContext(){
@@ -49,4 +55,14 @@ class DatabaseManager{
             print("User saving error", error)
         }
     }
+    
+    func isFavorite(product: ProdData) -> Bool {
+            
+            let fetchRequest: NSFetchRequest<ProductEntity> = ProductEntity.fetchRequest()
+//            fetchRequest.predicate = NSPredicate(format: "id == %@", product.id)
+        //fetchRequest.predicate = NSPredicate(format: "id == %@", product.id)
+            
+            let result = try? context.fetch(fetchRequest)
+            return result?.first != nil
+        }
 }
